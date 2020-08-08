@@ -1,6 +1,6 @@
-import { NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 
-module.exports = (asyncFunction: any) => {
+const wrapper = (asyncFunction: any) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       await asyncFunction(req, res, next);
@@ -9,3 +9,5 @@ module.exports = (asyncFunction: any) => {
     }
   };
 };
+
+export { wrapper };
